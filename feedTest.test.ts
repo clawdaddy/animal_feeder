@@ -25,8 +25,72 @@ const hippoFood = ["grass", "reeds", "shoots"];
 const badFood = ["shrimp", "potatoes", "pizza", "icecream"];
 
 describe("feeding animals", () => {
-  test("Alex likes the food we expect", () => {});
-  test("Marty likes the food we expect", () => {});
-  test("Melman likes the food we expect", () => {});
-  test("Gloria likes the food we expect", () => {});
+  test("Alex likes the food we expect", () => {
+    lionFood.forEach((food) => {
+      expect(alex.feed(food)).toBe(
+        `${alex.name} the ${alex.type} likes ${food}!`
+      );
+    });
+    badFood.forEach((food) => {
+      expect(alex.feed(food)).toBe(
+        `${alex.name} the ${alex.type} does not like ${food}!`
+      );
+    });
+  });
+  test("Marty likes the food we expect", () => {
+    zebraFood.forEach((food) => {
+      expect(marty.feed(food)).toBe(
+        `${marty.name} the ${marty.type} likes ${food}!`
+      );
+    });
+    badFood.forEach((food) => {
+      expect(marty.feed(food)).toBe(
+        `${marty.name} the ${marty.type} does not like ${food}!`
+      );
+    });
+  });
+  test("Melman likes the food we expect", () => {
+    giraffeFood.forEach((food) => {
+      expect(melman.feed(food)).toBe(
+        `${melman.name} the ${melman.type} likes ${food}!`
+      );
+    });
+    badFood.forEach((food) => {
+      expect(melman.feed(food)).toBe(
+        `${melman.name} the ${melman.type} does not like ${food}!`
+      );
+    });
+  });
+  test("Gloria likes the food we expect", () => {
+    hippoFood.forEach((food) => {
+      expect(gloria.feed(food)).toBe(
+        `${gloria.name} the ${gloria.type} likes ${food}!`
+      );
+    });
+    badFood.forEach((food) => {
+      expect(gloria.feed(food)).toBe(
+        `${gloria.name} the ${gloria.type} does not like ${food}!`
+      );
+    });
+  });
+});
+
+describe("feeding animals, but with less code", () => {
+  const animals = [alex, marty, melman, gloria];
+  const foods = [lionFood, zebraFood, giraffeFood, hippoFood];
+  animals.forEach((animal, i) => {
+    const speciesFood = foods[i];
+    test(`${animal.name} likes the food we expect`, () => {
+      speciesFood.forEach((food) => {
+        expect(animal.feed(food)).toBe(
+          `${animal.name} the ${animal.type} likes ${food}!`
+        );
+      });
+      badFood.forEach((food) => {
+        expect(animal.feed(food)).toBe(
+          `${animal.name} the ${animal.type} does not like ${food}!`
+        );
+      });
+    });
+  });
 });
